@@ -1,0 +1,19 @@
+name: clermon
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - conda-forge::r-base >=4
+  - conda-forge::r-dplyr
+  - conda-forge::r-readr
+  - conda-forge::r-tidyr
+  - conda-forge::r-stringr
+  - conda-forge::r-knitr
+  - conda-forge::rmarkdown
+  - conda-forge::biopython
+  - conda-forge::pandoc
+  - bioconda::blast
+  - python
+
+
