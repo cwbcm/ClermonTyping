@@ -11,6 +11,7 @@ dependencies:
   - conda-forge::r-stringr
   - conda-forge::r-knitr
   - conda-forge::r-rmarkdown
+  - condo-forge::r-markdown
   - conda-forge::biopython
   - conda-forge::pandoc
   - bioconda::blast
