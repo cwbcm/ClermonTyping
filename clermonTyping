@@ -89,7 +89,7 @@ function report_calling(){
 if [ $# -eq 0 ]
 then
 	 usage
-	 exit 1
+	 return 1
 fi
 
 while [[ $# -gt 0 ]]
@@ -98,11 +98,11 @@ do
     -v)
         echo "$version"
         usage
-        exit 0
+        return 0
         ;;
     -h)
         usage
-        exit 0
+        return 0
         ;;
     --fastafile) 
         FASTA_FILE="$2";
@@ -138,12 +138,12 @@ if [ -z "$FASTAS" ] && [ -z "$FASTA_FILE" ] && [ -z "$SUMMARY" ]
 then
     echo "Missing the contigs file. Option --fasta or --fastafile"
     usage
-    exit 1
+    return 1
 elif [ -n "$FASTAS" ] && [ -n "$FASTA_FILE" ]
 then
     echo "Too much parameters. Option --fasta or --fastafile"
     usage  
-    exit 1
+    return 1
 elif [ -n "$SUMMARY" ] 
 then
     NAME='Summary'
@@ -152,7 +152,7 @@ then
     then
         echo "Too much parameters. Option --fasta or --fastafile, or --summary"
         usage
-        exit 1
+        return 1
     fi
 
 else
@@ -172,7 +172,7 @@ then
     declare -a LIST_FILES
     if [ -z "$FASTA_FILE" ]
     then
-        IFS='@' read -ra ARRAY_FASTA <<< "$FASTAS"
+        IFS='@' read -r ARRAY_FASTA <<< "$FASTAS"
         LIST_FILES="${ARRAY_FASTA[@]}"
     else    
         while IFS=$'\n' read -r line 
@@ -217,7 +217,7 @@ then
 else
     while IFS=$'\n' read -r line 
     do 
-        IFS='/' read -ra ARRAY_PATH <<< "$line"
+        IFS='/' read -r ARRAY_PATH <<< "$line"
         DIR="${ARRAY_PATH[0]}"
     
         IFS=$'\n'
@@ -248,7 +248,7 @@ then
 fi
 
 echo "============== End =================="
-exit 0
+return 0
 
 
 
