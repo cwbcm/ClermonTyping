@@ -10,7 +10,7 @@ dependencies:
   - conda-forge::r-tidyr
   - conda-forge::r-stringr
   - conda-forge::r-knitr
-  - conda-forge::rmarkdown
+  - conda-forge::r-rmarkdown
   - conda-forge::biopython
   - conda-forge::pandoc
   - bioconda::blast
