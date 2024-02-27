@@ -29,12 +29,15 @@ BLAST_TASK='blastn'
 DB_MASH="${MY_PATH}/data/mash/mash_reference.msh"
 #Flag for minimal
 MINIMAL=0
+#Flag for MASH
+MASH=0
 
 function usage(){
 	printf "Script usage :\n"
 	printf "\t-h					: print this message and exit\n"
 	printf "\t-v					: print the version and exit\n"
 	printf "\t--fasta					: fasta contigs file(s). If multiple files, they must be separated by an arobase (@) value\n"
+	printf "\t--mash				: run Mash analysis (optional)\n"
 	printf "\t--name					: name for this analysis (optional)\n"
 	printf "\t--threshold				: option for ClermontTyping, do not use contigs under this size (optional)\n"
 	printf "\t--minimal				: output a minimal set of files (optional)\n"
@@ -126,7 +129,10 @@ do
     --summary) 
         SUMMARY="$2";
         shift
-        ;;    
+        ;;
+	--mash) 
+	    MASH=1;
+	    ;;      
 
     --) shift; break;;
     esac
@@ -196,8 +202,12 @@ then
             
             ##### Step 1: MASH analysis #####
             # Generate ${FASTA_NAME}_mash_screen.tab
-            mash_analysis
-            
+			if [ ${MASH} -eq 1 ]
+			then
+				mash_analysis
+			else
+				printf "Skip Mash.\n"
+			fi
             ##### Step 2: Blast #############
             # Generate ${FASTA_NAME}.xml
             blast_analysis
