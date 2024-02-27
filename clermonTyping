@@ -86,7 +86,7 @@ function report_calling(){
 }
 
 
-if [ $# == 0 ]
+if [ $# -eq 0 ]
 then
 	 usage
 	 exit 1
